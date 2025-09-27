@@ -1,6 +1,6 @@
 # CC → Monarch CSV Converter (Rogers format)
 
-Python CLI to convert Rogers Bank credit‑card CSV exports into a single Monarch Money import file. Supports merging multiple inputs, inclusive date filtering (to‑date defaults to today), and amount sign normalization (purchases → negative; payments/credits → positive). Also supports the weekly **portal table → Google Sheets → CSV** export.
+Convert Rogers Bank exports to a Monarch CSV. Supports monthly Statement CSV and the webpage transactions table (copy→Sheets→CSV), with merge, inclusive date filtering, and correct amount signs.
 
 Convert one or more Rogers Bank credit‑card CSV exports into a single **Monarch Money** import CSV.
 
