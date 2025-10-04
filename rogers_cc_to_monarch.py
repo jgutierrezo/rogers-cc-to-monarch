@@ -58,6 +58,28 @@ PORTAL_CAT_KEYS  = ["Transaction category", "Category"]
 # ------------------------
 # Helpers
 # ------------------------
+
+# --- Portal category normalization (case-insensitive, partial match allowed)
+PORTAL_CATEGORY_NORMALIZATION = {
+    "utility": "Shopping",
+    "dining": "Restaurants & Bars",
+    "grocery": "Groceries",
+    "healthcare": "Medical",
+    "travel": "Travel & Vacation",
+    "entertainment": "Entertainment & Recreation",
+    "gas": "Entertainment & Recreation",
+}
+
+def normalize_portal_category(cat: str) -> str:
+    """Return mapped category if it matches known portal labels; otherwise original."""
+    if not cat:
+        return ""
+    c_low = cat.strip().lower()
+    for key, target in PORTAL_CATEGORY_NORMALIZATION.items():
+        if c_low == key or c_low.startswith(key) or key in c_low:
+            return target
+    return cat.strip()
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="Convert one or more Rogers CSVs to a single Monarch CSV (auto-detect format; optional date filter)."
@@ -220,10 +242,15 @@ def main() -> None:
                 notes = ""            # portal export lacks location
                 acct = PORTAL_ACCOUNT_LABEL or "Rogers Mastercard"
                 amt_raw = clean_amount(get_ci(row, "Amount"))
+
                 if amt_raw < 0:
-                    out_amount = abs(amt_raw); out_category = "Credit Card Payment"
+                    out_amount = abs(amt_raw)
+                    out_category = "Credit Card Payment"
                 else:
-                    out_amount = -abs(amt_raw); out_category = (portal_cat_raw or "Uncategorized")
+                    out_amount = -abs(amt_raw)
+                    # normalize ONLY for portal; if no match, keep the original; if empty, Uncategorized
+                    normalized = normalize_portal_category(portal_cat_raw)
+                    out_category = normalized if normalized else (portal_cat_raw or "Uncategorized")
 
             out_rows.append({
                 "Date": date_str,
