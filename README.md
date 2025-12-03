@@ -1,8 +1,8 @@
 # CC → Monarch CSV Converter (Rogers format)
 
-Convert Rogers Bank exports to a Monarch CSV. Supports monthly Statement CSV and the webpage transactions table (copy→Sheets→CSV), with merge, inclusive date filtering, and correct amount signs.
+Monarch’s Rogers Bank credit card connection has been unreliable for many users (missing or delayed transactions), which is a serious problem when you rely on it to track your money accurately. This tool is a local workaround: it lets you export your Rogers transactions yourself and convert them into a clean Monarch-compatible CSV so your budgets stay up to date.
 
-Convert one or more Rogers Bank credit‑card CSV exports into a single **Monarch Money** import CSV.
+It supports both the monthly Statement CSV and the transactions table from the web portal (copy → Google Sheets → CSV), with merge, inclusive date filtering, and correct amount signs. You can convert one or more Rogers CSVs into a single Monarch import file.
 
 ---
 
