@@ -45,17 +45,17 @@ This tool is built and tested for **Rogers Bank (Canada)** CSV exports. It expec
 ## Usage
 ```bash
 # Merge multiple files into one output
-python rogers_cc_to_monarch.py in1.csv in2.csv out.csv
+python3 rogers_cc_to_monarch.py in1.csv in2.csv out.csv
 
 # Only from a start date to today
-python rogers_cc_to_monarch.py in.csv out.csv --from-date 2025-05-01
+python3 rogers_cc_to_monarch.py in.csv out.csv --from-date 2025-05-01
 
 # Specific date window (inclusive)
-python rogers_cc_to_monarch.py in.csv out.csv --from-date 2025-05-01 --to-date 2025-05-31
+python3 rogers_cc_to_monarch.py in.csv out.csv --from-date 2025-05-01 --to-date 2025-05-31
 ```
 **Windows path tip:** wrap paths in quotes, e.g.
 ```bash
-python rogers_cc_to_monarch.py "C:\\Users\\you\\Downloads\\rogers_may.csv" "C:\\Users\\you\\Downloads\\monarch_import.csv"
+python3 rogers_cc_to_monarch.py "C:\\Users\\you\\Downloads\\rogers_may.csv" "C:\\Users\\you\\Downloads\\monarch_import.csv"
 ```
 
 ---
